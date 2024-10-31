@@ -7,6 +7,11 @@
     padding: 0;
 }
 
+@font-face {
+    font-family: Roboto;
+    src: url("../fonts/Roboto.ttf");
+}
+
 html, body {
     font-family: Roboto, sans-serif;
     height: 100vh;
@@ -39,7 +44,7 @@ html, body {
 
 .invalid-feedback {
     margin-left: 40px;
-    display: block !important;
+    display: block;
 }
 
 .button-size {
@@ -98,7 +103,6 @@ html, body {
     font-weight: 400;
     color: var(--bs-primary-text-emphasis);
 }
-
 
 .menu {
     list-style: none;
@@ -170,7 +174,7 @@ button[aria-expanded="true"] .arrow-icon svg {
     padding: 20px 0 40px 20px;
 }
 
-#balance {
+.balance {
     margin-left: 10px;
 }
 
@@ -186,7 +190,7 @@ button[aria-expanded="true"] .arrow-icon svg {
 }
 
 .dropdown-toggle::after {
-    display: none!important;
+    display: none;
 }
 
 /*Стили для income / edit  create*/
@@ -204,6 +208,9 @@ button[aria-expanded="true"] .arrow-icon svg {
     font-size: 28px;
     font-weight: 500;
     color: #290661;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .add-new {
@@ -317,11 +324,11 @@ tr, td {
 }
 
 .table-type-income {
-    color: #198754 !important;
+    color: #198754;
 }
 
 .table-type-expenses {
-    color: red !important;
+    color: red;
 }
 
 .delete-table {

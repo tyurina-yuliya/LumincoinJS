@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="src/styles/styles.css">
     <link rel="stylesheet" href="src/styles/adaptive.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -92,7 +93,7 @@
                 </nav>
 
                 <div class="current-balance">
-                    Баланс: <a href="#" id="balance"> 500$</a>
+                    Баланс: <a href="#" class="balance"> 500$</a>
                 </div>
 
             </div>
@@ -172,18 +173,22 @@
 
                     <div class="chart-container">
                         <div class="chart-title">Доходы</div>
-                        <!--                        <canvas id="incomeChart"></canvas>-->
-                        <img class="pie-legend" src="src/images/pie-legend.png" alt="pie-legend">
-                        <img src="src/images/piechart.png" alt="piechart">
+                        <div>
+                            <canvas id="incomeChart"></canvas>
+                        </div>
+<!--                                                <img class="pie-legend" src="src/images/pie-legend.png" alt="pie-legend">-->
+                        <!--                        <img src="src/images/piechart.png" alt="piechart">-->
                     </div>
 
                     <div class="chart-divider"></div>
 
                     <div class="chart-container">
                         <div class="chart-title">Расходы</div>
-                        <!--                        <canvas id="expensesChart"></canvas>-->
-                        <img class="pie-legend" src="src/images/pie-legend.png" alt="pie-legend">
-                        <img src="src/images/piechart.png" alt="piechart">
+                        <div>
+                            <canvas id="expensesChart"></canvas>
+                        </div>
+<!--                                                <img class="pie-legend" src="src/images/pie-legend.png" alt="pie-legend">-->
+                        <!--                        <img src="src/images/piechart.png" alt="piechart">-->
                     </div>
 
                 </div>
@@ -198,5 +203,6 @@
 
 <script src="src/components/main.js"></script>
 <script src="src/components/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

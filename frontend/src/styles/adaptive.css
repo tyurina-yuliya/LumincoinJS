@@ -38,7 +38,7 @@
         transition: left 0.3s ease;
         z-index: 1000;
         display: block; /* Показывает, но вне видимости */
-        height: 100vh!important; /* Полная высота экрана */
+        height: 100vh; /* Полная высота экрана */
         background-color: #fff; /* Цвет фона для сайдбара */
     }
 
@@ -94,7 +94,7 @@
 
 @media (min-width: 769px) {
     .menu-toggle {
-        display: none!important;
+        display: none;
     }
 }
 
