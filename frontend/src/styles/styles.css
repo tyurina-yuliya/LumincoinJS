@@ -1,15 +1,9 @@
-@import "dropdown.css";
 
 *,
 *::after,
 *::before {
     margin: 0;
     padding: 0;
-}
-
-@font-face {
-    font-family: Roboto;
-    src: url("../fonts/Roboto.ttf");
 }
 
 html, body {
@@ -40,6 +34,12 @@ html, body {
 .no-account {
     font-size: 12px;
     font-weight: 400;
+}
+
+.common-error {
+    color: var(--bs-form-invalid-color);
+    display: none;
+    font-size: .875em;
 }
 
 .invalid-feedback {
@@ -103,6 +103,7 @@ html, body {
     font-weight: 400;
     color: var(--bs-primary-text-emphasis);
 }
+
 
 .menu {
     list-style: none;
