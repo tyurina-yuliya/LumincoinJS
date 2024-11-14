@@ -12,6 +12,7 @@ import {IncomeAndExpensesCreate} from "./components/income-and-expenses/income-a
 import {IncomeAndExpensesEdit} from "./components/income-and-expenses/income-and-expenses-edit";
 import {Logout} from "./components/auth/logout";
 import {AuthCheckUtils} from "./ulits/auth-check-utils";
+import {UserName} from "./components/user-name";
 
 
 export class Router {
@@ -33,6 +34,7 @@ export class Router {
                     const accessCheck = new AuthCheckUtils(this.openNewRoute.bind(this));
                     if (accessCheck.checkAndRedirect()) {
                         new Main();
+                        new UserName();
                     }
                 }
             },

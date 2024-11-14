@@ -1,4 +1,5 @@
 import {AuthUtils} from "../../ulits/auth-utils";
+import config from "../../config/config";
 
 export class SignUp {
 
@@ -31,7 +32,7 @@ export class SignUp {
     validateForm() {
         let isValid = true;
 
-        if (this.nameInputElement.value && this.nameInputElement.value.match(/^[А-ЯЁ][а-яё]+(?: [А-ЯЁ][а-яё]+)*[^\s]$/)) {
+        if (this.nameInputElement.value && this.nameInputElement.value.match(/^[А-ЯЁ][а-яё]{2,}([-][А-ЯЁ][а-яё]{2,})?\s[А-ЯЁ][а-яё]{2,}$/)) {
             this.nameInputElement.classList.remove('is-invalid');
             this.nameErrorInputElement.classList.replace('invalid-feedback', 'valid-feedback');
         } else {
@@ -49,7 +50,7 @@ export class SignUp {
             isValid = false;
         }
 
-        if (this.passwordInputElement.value && this.passwordInputElement.value.match(/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/)) {
+        if (this.passwordInputElement.value && this.passwordInputElement.value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)) {
             this.passwordInputElement.classList.remove('is-invalid');
             this.passwordErrorInputElement.classList.replace('invalid-feedback', 'valid-feedback');
         } else {
@@ -81,7 +82,7 @@ export class SignUp {
             const firstName = nameParts[0];
             const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
 
-            const response = await fetch('http://localhost:3000/api/signup', {
+            const response = await fetch(config.api + '/signup', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
@@ -110,7 +111,7 @@ export class SignUp {
                 id: result.user.id
             })
 
-            this.openNewRoute('/');
+            this.openNewRoute('/login');
         }
     }
 }
