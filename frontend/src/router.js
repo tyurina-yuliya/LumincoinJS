@@ -12,6 +12,7 @@ import {IncomeAndExpensesCreate} from "./components/income-and-expenses/income-a
 import {IncomeAndExpensesEdit} from "./components/income-and-expenses/income-and-expenses-edit";
 import {Logout} from "./components/auth/logout";
 import {AuthCheckUtils} from "./ulits/auth-check-utils";
+import {Balance} from "./components/balance";
 import {UserName} from "./components/user-name";
 
 
@@ -33,7 +34,8 @@ export class Router {
                 load: () => {
                     const accessCheck = new AuthCheckUtils(this.openNewRoute.bind(this));
                     if (accessCheck.checkAndRedirect()) {
-                        new Main();
+                        new Main(this.openNewRoute.bind(this));
+                        new Balance();
                         new UserName();
                     }
                 }
@@ -76,7 +78,9 @@ export class Router {
                 load: () => {
                     const accessCheck = new AuthCheckUtils(this.openNewRoute.bind(this));
                     if (accessCheck.checkAndRedirect()) {
-                        new IncomeAndExpenses();
+                        new IncomeAndExpenses(this.openNewRoute.bind(this));
+                        new Balance();
+                        new UserName();
                     }
                 }
             },
@@ -88,7 +92,9 @@ export class Router {
                 load: () => {
                     const accessCheck = new AuthCheckUtils(this.openNewRoute.bind(this));
                     if (accessCheck.checkAndRedirect()) {
-                        new IncomeAndExpensesCreate();
+                        new IncomeAndExpensesCreate(this.openNewRoute.bind(this));
+                        new Balance();
+                        new UserName();
                     }
                 }
             },
@@ -100,7 +106,9 @@ export class Router {
                 load: () => {
                     const accessCheck = new AuthCheckUtils(this.openNewRoute.bind(this));
                     if (accessCheck.checkAndRedirect()) {
-                        new IncomeAndExpensesEdit();
+                        new IncomeAndExpensesEdit(this.openNewRoute.bind(this));
+                        new Balance();
+                        new UserName();
                     }
                 }
             },
@@ -113,6 +121,8 @@ export class Router {
                     const accessCheck = new AuthCheckUtils(this.openNewRoute.bind(this));
                     if (accessCheck.checkAndRedirect()) {
                         new Expenses(this.openNewRoute.bind(this));
+                        new Balance();
+                        new UserName();
                     }
                 }
             },
@@ -124,7 +134,9 @@ export class Router {
                 load: () => {
                     const accessCheck = new AuthCheckUtils(this.openNewRoute.bind(this));
                     if (accessCheck.checkAndRedirect()) {
-                        new ExpensesEdit();
+                        new ExpensesEdit(this.openNewRoute.bind(this));
+                        new Balance();
+                        new UserName();
                     }
                 }
             },
@@ -136,7 +148,9 @@ export class Router {
                 load: () => {
                     const accessCheck = new AuthCheckUtils(this.openNewRoute.bind(this));
                     if (accessCheck.checkAndRedirect()) {
-                        new ExpensesCreate();
+                        new ExpensesCreate(this.openNewRoute.bind(this));
+                        new Balance();
+                        new UserName();
                     }
                 }
             },
@@ -148,7 +162,9 @@ export class Router {
                 load: () => {
                     const accessCheck = new AuthCheckUtils(this.openNewRoute.bind(this));
                     if (accessCheck.checkAndRedirect()) {
-                        new Income();
+                        new Income(this.openNewRoute.bind(this));
+                        new Balance();
+                        new UserName();
                     }
                 }
             },
@@ -160,7 +176,9 @@ export class Router {
                 load: () => {
                     const accessCheck = new AuthCheckUtils(this.openNewRoute.bind(this));
                     if (accessCheck.checkAndRedirect()) {
-                        new IncomeEdit();
+                        new IncomeEdit(this.openNewRoute.bind(this));
+                        new Balance();
+                        new UserName();
                     }
                 }
             },
@@ -172,7 +190,9 @@ export class Router {
                 load: () => {
                     const accessCheck = new AuthCheckUtils(this.openNewRoute.bind(this));
                     if (accessCheck.checkAndRedirect()) {
-                        new IncomeCreate();
+                        new IncomeCreate(this.openNewRoute.bind(this));
+                        new Balance();
+                        new UserName();
                     }
                 }
             },
