@@ -107,10 +107,10 @@ export class IncomeAndExpenses {
             trElement.innerHTML = `
             <th scope="row" class="text-center">${index}</th>
             <td class="${typeClass}">${typeText}</td>
-            <td>${operation.category}</td>
+              <td class="custom-table-with">${operation.category}</td>
             <td>${operation.amount + ' $'}</td>
             <td>${formattedDate}</td>
-            <td>${operation.comment}</td>
+            <td class="custom-table-with">${operation.comment}</td>
             <td class="table-actions-buttons d-flex align-items-center justify-content-end">
                 <div class="delete-table" data-operation-id="${operation.id}" data-bs-toggle="modal" data-bs-target="#deleteModal">
                     <svg width="14" height="15" viewBox="0 0 14 15" fill="none"

@@ -116,6 +116,11 @@ html, body {
     transition: background-color 0.3s ease;
 }
 
+/*.menu-categories {*/
+/*    border: #126bf2 solid 2px;*/
+/*    border-radius: 8px;*/
+/*}*/
+
 .menu-text {
     font-size: 14px;
     font-weight: 400;
@@ -129,6 +134,16 @@ html, body {
 
 .nav-link:hover .sidebar-svg path,
 .nav-link:focus .sidebar-svg path {
+    fill: #fff;
+}
+
+.nav-link.active {
+    color: var(--bs-primary-text-emphasis);
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+.nav-link.active .sidebar-svg path {
     fill: #fff;
 }
 
@@ -312,6 +327,13 @@ tbody > tr > td {
 tr, td {
     height: 50px;
     font-size: 14px;
+}
+
+.custom-table-with {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .table-type-income {

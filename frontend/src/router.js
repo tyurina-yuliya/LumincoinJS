@@ -265,6 +265,9 @@ export class Router {
             history.pushState({}, '', '/404');
             await this.activateRoute();
         }
+
+        this.updateActiveMenu(urlRoute);
+
         const menuToggle = document.getElementById('menu-toggle');
         if (menuToggle) {
             menuToggle.addEventListener('click', function () {
@@ -276,4 +279,15 @@ export class Router {
         }
     }
 
+    updateActiveMenu(route) {
+        const links = document.querySelectorAll('.menu a');
+        links.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === route) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
 }

@@ -1,6 +1,6 @@
 import Chart from "chart.js/auto";
-import { DatePickingUtil } from "../ulits/date-picking-util";
-import { HttpUtils } from "../ulits/http-utils";
+import {DatePickingUtil} from "../ulits/date-picking-util";
+import {HttpUtils} from "../ulits/http-utils";
 
 export class Main {
 
@@ -123,6 +123,16 @@ export class Main {
                             boxWidth: 35,
                             padding: 10,
                             usePointStyle: false,
+                            generateLabels: function (chart) {
+                                const originalLabels = chart.data.labels;
+                                return originalLabels.map((label, index) => ({
+                                    text: label.length > 10 ? `${label.substring(0, 10)}...` : label, // Обрезаем до 10 символов
+                                    fillStyle: chart.data.datasets[0].backgroundColor[index],
+                                    strokeStyle: chart.data.datasets[0].backgroundColor[index],
+                                    hidden: chart.getDatasetMeta(0).data[index].hidden,
+                                    index: index,
+                                }));
+                            },
                         },
                     },
                 },
