@@ -69,27 +69,45 @@ export class Income {
 
     async deleteIncome() {
         if (this.selectedIncomeId) {
-            const result = await HttpUtils.request('/categories/income/' + this.selectedIncomeId, 'DELETE', true);
+            try {
+                const operationsResponse = await HttpUtils.request('/operations?period=all', 'GET', true);
+                if (!operationsResponse || operationsResponse.error) {
+                    return alert("Возникла ошибка при удалении дохода! Обратитесь в поддержку.");
+                }
 
-            if (result.redirect) {
-                return this.openNewRoute(result.redirect);
+                const relatedOperations = operationsResponse.response.filter(op => op.type === "income" && op.category === this.selectedIncomeTitle);
+
+                for (const operation of relatedOperations) {
+                    const deleteOperationResult = await HttpUtils.request('/operations' + operation.id, 'DELETE', true);
+                    if (deleteOperationResult.error) {
+                        return alert(`Возникла ошибка при удалении операции с ID ${operation.id}! Обратитесь в поддержку.`);
+                    }
+                }
+
+                const result = await HttpUtils.request('/categories/income/' + this.selectedIncomeId, 'DELETE', true);
+
+                if (result.redirect) {
+                    return this.openNewRoute(result.redirect);
+                }
+
+                if (result.error || (!result.response || (result.response && result.response.error))) {
+                    return alert("Возникла ошибка при удалении дохода! Обратитесь в поддержку.");
+                }
+
+                const incomeBlock = document.querySelector(`.category-block[data-id="${this.selectedIncomeId}"]`);
+                if (incomeBlock) {
+                    incomeBlock.remove();
+                }
+
+                const deleteModal = document.getElementById('deleteModal');
+                const modalInstance = bootstrap.Modal.getInstance(deleteModal);
+                modalInstance.hide();
+
+                this.openNewRoute('/income');
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert("Произошла ошибка в процессе удаления! Обратитесь в поддержку.");
             }
-
-            if (result.error || !result.response || (result.response && result.response.error)) {
-                return alert("Возникла ошибка при удалении дохода! Обратитесь в поддержку.");
-            }
-
-            const incomeBlock = document.querySelector(`.category-block[data-id="${this.selectedIncomeId}"]`);
-            if (incomeBlock) {
-                incomeBlock.remove();
-            }
-
-            const deleteModal = document.getElementById('deleteModal');
-            const modalInstance = bootstrap.Modal.getInstance(deleteModal);
-            modalInstance.hide();
-
-            this.openNewRoute('/income');
-
         }
     }
 

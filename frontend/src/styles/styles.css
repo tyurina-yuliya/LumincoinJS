@@ -116,10 +116,21 @@ html, body {
     transition: background-color 0.3s ease;
 }
 
-/*.menu-categories {*/
-/*    border: #126bf2 solid 2px;*/
-/*    border-radius: 8px;*/
-/*}*/
+.menu-dropdown > .dropdown-item:not(.collapsed){
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border: 1px solid var(--bs-link-hover-color);
+    border-bottom: none;
+}
+.menu-dropdown .submenu {
+    border: 1px solid var(--bs-link-hover-color);
+    border-top: none;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.menu-dropdown .submenu .dropdown-item {
+    border-radius: 0;
+}
 
 .menu-text {
     font-size: 14px;

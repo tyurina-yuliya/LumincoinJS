@@ -72,13 +72,28 @@ export class Expenses {
 
     async deleteExpense() {
         if (this.selectedExpenseId) {
-            const result = await HttpUtils.request('/categories/expense/' + this.selectedExpenseId, 'DELETE', true);
+            try {
+                const operationsResponse = await HttpUtils.request('/operations?period=all', 'GET', true);
+                if (!operationsResponse || operationsResponse.error) {
+                    return alert("Возникла ошибка при удалении дохода! Обратитесь в поддержку.");
+                }
+
+                const relatedOperations = operationsResponse.response.filter(op => op.type === "income" && op.category === this.selectedExpenseTitle);
+
+                for (const operation of relatedOperations) {
+                    const deleteOperationResult = await HttpUtils.request('/operations' + operation.id, 'DELETE', true);
+                    if (deleteOperationResult.error) {
+                        return alert(`Возникла ошибка при удалении операции с ID ${operation.id}! Обратитесь в поддержку.`);
+                    }
+                }
+
+                const result = await HttpUtils.request('/categories/expense/' + this.selectedExpenseId, 'DELETE', true);
 
             if (result.redirect) {
                 return this.openNewRoute(result.redirect);
             }
 
-            if (result.error || !result.response || (result.response && result.response.error)) {
+            if (result.error || (!result.response || (result.response && result.response.error))) {
                 return alert("Возникла ошибка при удалении расхода! Обратитесь в поддержку.");
             }
 
@@ -86,11 +101,16 @@ export class Expenses {
             if (expenseBlock) {
                 expenseBlock.remove();
             }
+
             const deleteModal = document.getElementById('deleteModal');
             const modalInstance = bootstrap.Modal.getInstance(deleteModal);
             modalInstance.hide();
 
             this.openNewRoute('/expenses');
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert("Произошла ошибка в процессе удаления! Обратитесь в поддержку.");
+            }
         }
     }
 }
