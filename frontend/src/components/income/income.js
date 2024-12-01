@@ -78,7 +78,7 @@ export class Income {
                 const relatedOperations = operationsResponse.response.filter(op => op.type === "income" && op.category === this.selectedIncomeTitle);
 
                 for (const operation of relatedOperations) {
-                    const deleteOperationResult = await HttpUtils.request('/operations' + operation.id, 'DELETE', true);
+                    const deleteOperationResult = await HttpUtils.request('/operations/' + operation.id, 'DELETE', true);
                     if (deleteOperationResult.error) {
                         return alert(`Возникла ошибка при удалении операции с ID ${operation.id}! Обратитесь в поддержку.`);
                     }
