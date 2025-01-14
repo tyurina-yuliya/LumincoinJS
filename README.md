@@ -1,5 +1,5 @@
 # Live version
-Available at GitHub pages: https://github.com/tyurina-yuliya/Lumincoin
+Available at GitHub pages: https://tyurina-yuliya.github.io/Lumincoin/
 # Used technologies:
 - HTML5,
 - SCSS,
